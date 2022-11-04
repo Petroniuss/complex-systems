@@ -21,9 +21,22 @@ def main():
     ifs = IFS(chaos())
 
     # second part
+    ifs = IFS(first_params_list(), mode='roulette')
     ifs = IFS(second_params_list(), mode='roulette')
+    ifs = IFS(snakes(), mode='roulette')
+    ifs = IFS(triangle(), mode='roulette')
+    ifs = IFS(chaos(), mode='roulette')
 
-    for i in range(15):
+    # third part
+    ifs = IFS(first_params_list(), mode='roulette', p=[0.8, 0.1, 0.1])
+    ifs = IFS(first_params_list(), mode='roulette', p=[0.2, 0.3, 0.5])
+    ifs = IFS(second_params_list(), mode='roulette', p=[0.3, 0.2, 0.3, 0.2])
+    ifs = IFS(snakes(), mode='roulette', p=[0.8, 0.1, 0.1])
+    ifs = IFS(snakes(), mode='roulette', p=[0.2, 0.2, 0.6])
+    ifs = IFS(triangle(), mode='roulette', p=[0.2, 0.8])
+    ifs = IFS(chaos(), mode='roulette', p=[0.05, 0.05, 0.3, 0.1, 0.1, 0.1, 0.3])
+
+    for i in range(8):
         img = ifs.iteration(img)
         show_img(img)
 
@@ -111,9 +124,10 @@ def chaos() -> List[IFSParams]:
 
 
 class IFS:
-    def __init__(self, params_list: List[IFSParams], mode=None):
+    def __init__(self, params_list: List[IFSParams], mode=None, p=None):
         self.params_list = params_list
         self.mode = "default" if mode is None else "roulette"
+        self.p = p
 
     def iteration(self, img):
 
@@ -129,11 +143,20 @@ class IFS:
             return new_img
 
         def iter_roulette():
+            def pick_w_random():
+                return lambda: random.randint(0, len(self.params_list) - 1)
+
+            def pick_w_with_p(p):
+                population = list(range(0, len(self.params_list)))
+                return lambda: random.choices(population=population, weights=p)[0]
+
+            pick_w_fun = pick_w_random() if self.p is None else pick_w_with_p(self.p)
+
             new_img = np.ones((SIZE, SIZE))
             for y in range(SIZE):
                 for x in range(SIZE):
                     if img[y, x] == 0:
-                        w_idx = random.randint(0, len(self.params_list) - 1)
+                        w_idx = pick_w_fun()
                         new_x, new_y = self.compute_new_position((x, y), w_idx)
                         new_img[new_y, new_x] = 0
 
