@@ -13,9 +13,17 @@ def main():
     img = generate_L_shaped_image()
     show_img(img)
 
+    # first part
+    ifs = IFS(first_params_list())
+    ifs = IFS(second_params_list())
+    ifs = IFS(snakes())
+    ifs = IFS(triangle())
+    ifs = IFS(chaos())
+
+    # second part
     ifs = IFS(second_params_list(), mode='roulette')
 
-    for i in range(5):
+    for i in range(15):
         img = ifs.iteration(img)
         show_img(img)
 
@@ -48,6 +56,57 @@ def second_params_list() -> List[IFSParams]:
         ifs_1_params,
         ifs_2_params,
         ifs_3_params,
+    ]
+
+
+def snakes() -> List[IFSParams]:
+    ifs_0_params = IFSParams(0.0, -0.5, 0.85, 0.0, -1.732366, 3.366182)
+
+    ifs_1_params = IFSParams(0.3, 0.0, 0.0, 0.3, -0.027891, 5.014877)
+
+    ifs_2_params = IFSParams(0.0, 0.5, -0.85, 0.0, 1.620804, 3.310401)
+
+    return [
+        ifs_0_params,
+        ifs_1_params,
+        ifs_2_params,
+    ]
+
+
+def triangle() -> List[IFSParams]:
+    ifs_0_params = IFSParams(0.5, 0.5, -0.5, 0.5, 0.0, 0.0)
+
+    ifs_1_params = IFSParams(0.5, -0.5, 0.5, 0.5, 0.5, -0.5)
+
+    return [
+        ifs_0_params,
+        ifs_1_params,
+    ]
+
+
+def chaos() -> List[IFSParams]:
+    ifs_0_params = IFSParams(0.33, .0, 0, 0.5, .333, .0)
+
+    ifs_1_params = IFSParams(-0.33, .0, 0, -0.5, .666, .0)
+
+    ifs_2_params = IFSParams(0.33, .0, 0, 0.5, .666, .5)
+
+    ifs_3_params = IFSParams(0.75, 0.00, 0.00, 0.30, -0.20, 0.00)
+
+    ifs_4_params = IFSParams(0.75, 0.00, 0.00, 0.30, 0.20, 0.00)
+
+    ifs_5_params = IFSParams(0.50, 0.00, 0.00, 0.80, 0.00, 0.20)
+
+    ifs_6_params = IFSParams(a=0.5, b=0.0, c=0.0, d=0.5, e=0.0, f=0.0)
+
+    return [
+        ifs_0_params,
+        ifs_1_params,
+        ifs_2_params,
+        ifs_3_params,
+        ifs_4_params,
+        ifs_5_params,
+        ifs_6_params,
     ]
 
 
