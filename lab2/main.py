@@ -12,6 +12,28 @@ def main():
     img = generate_L_shaped_image()
     show_img(img)
 
+    ifs = IFS(second_params_list())
+
+    for i in range(10):
+        img = ifs.iteration(img)
+        show_img(img)
+
+
+def show_img(img):
+    plt.imshow(img, cmap='gray', vmin=0, vmax=1)
+    plt.show()
+
+
+def generate_L_shaped_image():
+    img = np.ones((SIZE, SIZE))
+
+    img[:, :548] = 0
+    img[1600:, :] = 0
+
+    return img
+
+
+def first_params_list() -> List[IFSParams]:
     ifs_0_params = IFSParams(
         a=0.0,
         b=-0.5,
@@ -39,39 +61,54 @@ def main():
         f=0.5
     )
 
-    #
-    # ifs_3_params = IFSParams(
-    #     a=0.849,
-    #     b=0.037,
-    #     c=-0.037,
-    #     d=0.849,
-    #     e=0.075,
-    #     f=0.1830
-    # )
+    return [ifs_0_params, ifs_1_params, ifs_2_params]
 
-    ifs = IFS(params_list=[
+
+def second_params_list() -> List[IFSParams]:
+    # 0.849 0.037 -0.037 0.849 0.075 0.1830
+    ifs_0_params = IFSParams(
+        a=0.849,
+        b=0.037,
+        c=-0.037,
+        d=0.849,
+        e=0.075,
+        f=0.1830
+    )
+
+    # 0.197 -0.226 0.226 0.197 0.400 0.049
+    ifs_1_params = IFSParams(
+        a=0.197,
+        b=-0.226,
+        c=0.226,
+        d=0.197,
+        e=0.400,
+        f=0.049
+    )
+
+    # -0.150 0.283 0.260 0.237 0.575 -0.084
+    ifs_2_params = IFSParams(
+        a=-0.150,
+        b=0.283,
+        c=0.260,
+        d=0.237,
+        e=0.575,
+        f=-0.084
+    )
+    # 0.000 0.000 0.000 0.160 0.500 0.000
+    ifs_2_params = IFSParams(
+        a=0.000,
+        b=0.000,
+        c=0.000,
+        d=0.160,
+        e=0.500,
+        f=0.000
+    )
+
+    return [
         ifs_0_params,
         ifs_1_params,
-        ifs_2_params
-    ])
-
-    for i in range(10):
-        img = ifs.iteration(img)
-        show_img(img)
-
-
-def show_img(img):
-    plt.imshow(img, cmap='gray', vmin=0, vmax=1)
-    plt.show()
-
-
-def generate_L_shaped_image():
-    img = np.ones((SIZE, SIZE))
-
-    img[:, :548] = 0
-    img[1600:, :] = 0
-
-    return img
+        ifs_2_params,
+    ]
 
 
 class IFS:
