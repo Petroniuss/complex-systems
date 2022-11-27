@@ -78,7 +78,7 @@ def draw_degree_distribution(graph: nx.Graph, name: str):
 
 
 def draw_graph(graph: nx.Graph, name: str, nx_draw_graph_fun):
-    nx_draw_graph_fun(graph, node_color=[v for _, v in graph.degree()])
+    nx_draw_graph_fun(graph, node_color=[v for _, v in graph.degree()], cmap='hot')
     plt.title(name)
     plt.show()
 
@@ -141,8 +141,8 @@ def main():
     print(graphs)
 
     graph, name = graphs[0]
-    # draw_degree_distribution(graph, name)
-    # draw_graph(graph, name, nx.draw_kamada_kawai)
+    draw_degree_distribution(graph, name)
+    draw_graph(graph, name, nx.draw_spring)
 
     measure_resiliency(graph, f'random error - {name}', random_error)
     measure_resiliency(graph, f'attack - {name}', attack)
