@@ -46,7 +46,7 @@ def evolution(mappings: dict, n=100, p=0.5, iterations=100):
 
 
 # 2. Nagel-Schreckenberg model
-def simulate(L=100, v_max=2, p=0.2, vehicle_density=0.1, n_iterations=100):
+def simulate(L=100, v_max=2, p=0.2, vehicle_density=0.24, n_iterations=100):
     initial_state = generate_initial_state(L, vehicle_density)
     states = [initial_state]
     snapshots = [to_image(initial_state, v_max)]
@@ -157,21 +157,26 @@ def to_image(state: List[int], v_max, vehicle_width=1, vehicle_height=12):
 
 
 if __name__ == '__main__':
-    simulate()
+    # ex 1.
+    first_row = '111110101100011010001000'
+    mapping = {
+        '111': '1',
+        '110': '0',
+        '101': '1',
+        '100': '1',
+        '011': '1',
+        '010': '0',
+        '001': '0',
+        '000': '0'
+    }
+    image = evolution(mapping, n=100, p=0.5, iterations=100)
+    plt.imshow(image, cmap='binary')
+    plt.show()
 
-    # first_row = '111110101100011010001000'
-    # mapping = {
-    #     '111': '1',
-    #     '110': '0',
-    #     '101': '1',
-    #     '100': '1',
-    #     '011': '1',
-    #     '010': '0',
-    #     '001': '0',
-    #     '000': '0'
-    # }
-    #
-    # image = evolution(mapping, n=100, p=0.7, iterations=100)
-    # plt.imshow(image, cmap='binary')
-    # plt.show()
+    # ex 2.
+    simulate(vehicle_density=0.24)
+    simulate(vehicle_density=0.48)
+    simulate(vehicle_density=0.2, p=.4)
+    simulate(vehicle_density=0.2, p=.1)
+
     pass
