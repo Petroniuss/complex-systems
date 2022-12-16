@@ -21,7 +21,7 @@ def simulation(n_iters: int, L: int, p: float, alpha: int):
     def show(M):
         pprint(M)
         plt.imshow(M, cmap='binary')
-        plt.show()
+        plt.show(block=False)
 
     M = automata(L, p)
     show(M)

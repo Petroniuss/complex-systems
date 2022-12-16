@@ -2,31 +2,55 @@
 
 use std::collections::HashMap;
 use std::fs;
-use std::ops::Rem;
 use rand::{Rng, thread_rng};
 use tqdm::{Iter};
-use average::{Estimate, Mean};
+use average::{Mean};
+
+fn main() {
+    simulation_1();
+    simulation_2();
+    simulation_3();
+}
 
 fn simulation_1() {
     simulation(
-        3000, 20, 0.5, 4,
+        3000, 20, 0.5, 4, 2,
         "results/simulation_1_before.txt",
         "results/simulation_1_after.txt",
         "results/simulation_1_stats.txt",
     );
 }
 
+fn simulation_2() {
+    simulation(
+        3000, 100, 0.5, 4, 2,
+        "results/simulation_2_before.txt",
+        "results/simulation_2_after.txt",
+        "results/simulation_2_stats.txt",
+    );
+}
+
+fn simulation_3() {
+    simulation(
+        3000, 800, 0.5, 4, 2,
+        "results/simulation_3_before.txt",
+        "results/simulation_3_after.txt",
+        "results/simulation_3_stats.txt",
+    );
+}
+
+
 fn simulation(n_iters: usize,
               L: usize,
               p: f32,
               alpha: usize,
+              num_agents: i32,
               before_file_name: &str,
               after_file_name: &str,
               after_statistics_file_name: &str,
-
 ) {
 
-    let mut M = automata(L, p);
+    let mut M = automata(L, p, num_agents);
     save_matrix(&M, before_file_name);
 
     let mut S = Vec::with_capacity(n_iters);
@@ -147,7 +171,7 @@ fn save_vec(M: &Vec<f64>, filename: &str) {
     fs::write(filename, data).expect("");
 }
 
-fn automata(L: usize, p: f32) -> Vec<Vec<i32>> {
+fn automata(L: usize, p: f32, num_agents: i32) -> Vec<Vec<i32>> {
     let mut M = vec![vec![0; L]; L];
     let size = L * L;
 
@@ -159,14 +183,10 @@ fn automata(L: usize, p: f32) -> Vec<Vec<i32>> {
         let y = rng.gen_range(0..L);
 
         if M[y][x] == 0 {
-            M[y][x] = rng.gen_range(1..=2);
+            M[y][x] = rng.gen_range(1..=num_agents);
             taken += 1;
         }
     }
 
     return M;
-}
-
-fn main() {
-    simulation_1()
 }
