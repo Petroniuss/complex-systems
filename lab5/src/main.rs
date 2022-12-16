@@ -7,9 +7,9 @@ use tqdm::{Iter};
 use average::{Mean};
 
 fn main() {
-    // simulation_1();
-    // simulation_2();
-    // simulation_3();
+    simulation_1();
+    simulation_2();
+    simulation_3();
 
     simulation_4();
     simulation_5();
