@@ -7,9 +7,17 @@ use tqdm::{Iter};
 use average::{Mean};
 
 fn main() {
-    simulation_1();
-    simulation_2();
-    simulation_3();
+    // simulation_1();
+    // simulation_2();
+    // simulation_3();
+
+    simulation_4();
+    simulation_5();
+    simulation_6();
+
+    simulation_7();
+    simulation_8();
+    simulation_9();
 }
 
 fn simulation_1() {
@@ -36,6 +44,60 @@ fn simulation_3() {
         "results/simulation_3_before.txt",
         "results/simulation_3_after.txt",
         "results/simulation_3_stats.txt",
+    );
+}
+
+fn simulation_4() {
+    simulation(
+        3000, 20, 0.65, 4, 2,
+        "results/simulation_4_before.txt",
+        "results/simulation_4_after.txt",
+        "results/simulation_4_stats.txt",
+    );
+}
+
+fn simulation_5() {
+    simulation(
+        3000, 100, 0.65, 4, 2,
+        "results/simulation_5_before.txt",
+        "results/simulation_5_after.txt",
+        "results/simulation_5_stats.txt",
+    );
+}
+
+fn simulation_6() {
+    simulation(
+        3000, 200, 0.65, 4, 2,
+        "results/simulation_6_before.txt",
+        "results/simulation_6_after.txt",
+        "results/simulation_6_stats.txt",
+    );
+}
+
+fn simulation_7() {
+    simulation(
+        3000, 20, 0.35, 4, 2,
+        "results/simulation_7_before.txt",
+        "results/simulation_7_after.txt",
+        "results/simulation_7_stats.txt",
+    );
+}
+
+fn simulation_8() {
+    simulation(
+        3000, 100, 0.35, 4, 2,
+        "results/simulation_8_before.txt",
+        "results/simulation_8_after.txt",
+        "results/simulation_8_stats.txt",
+    );
+}
+
+fn simulation_9() {
+    simulation(
+        3000, 200, 0.35, 4, 2,
+        "results/simulation_9_before.txt",
+        "results/simulation_9_after.txt",
+        "results/simulation_9_stats.txt",
     );
 }
 
