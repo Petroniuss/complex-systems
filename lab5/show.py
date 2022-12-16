@@ -16,7 +16,7 @@ def show_M(name: str, M):
 
 def show_S(name: str, S):
     pprint(name)
-    pprint(M)
+    pprint(S)
     plt.title(name)
 
     xs = np.arange(0, len(S))
@@ -32,9 +32,10 @@ if __name__ == '__main__':
     for filename in os.listdir('results'):
         path = os.path.join(dir, filename)
         if os.path.isfile(path):
-            if 'stats' in filename:
-                S = np.loadtxt(path, delimiter=' ', dtype=np.float)
-                show_S(filename, S)
-            else:
-                M = np.loadtxt(path, delimiter=',', dtype=np.int32)
-                show_M(filename, M)
+            if 'agents' in filename and ('6' in filename or '7' in filename):
+                if 'stats' in filename:
+                    S = np.loadtxt(path, delimiter=' ', dtype=np.float)
+                    show_S(filename, S)
+                else:
+                    M = np.loadtxt(path, delimiter=',', dtype=np.int32)
+                    show_M(filename, M)

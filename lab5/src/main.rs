@@ -7,17 +7,21 @@ use tqdm::{Iter};
 use average::{Mean};
 
 fn main() {
-    simulation_1();
-    simulation_2();
-    simulation_3();
+    // simulation_1();
+    // simulation_2();
+    // simulation_3();
+    // simulation_4();
+    // simulation_5();
+    // simulation_6();
+    // simulation_7();
+    // simulation_8();
+    // simulation_9();
 
-    simulation_4();
-    simulation_5();
-    simulation_6();
-
-    simulation_7();
-    simulation_8();
-    simulation_9();
+    // simulation_1_4_agents();
+    // simulation_2_4_agents();
+    // simulation_3_4_agents();
+    simulation_6_4_agents();
+    simulation_7_4_agents();
 }
 
 fn simulation_1() {
@@ -44,6 +48,52 @@ fn simulation_3() {
         "results/simulation_3_before.txt",
         "results/simulation_3_after.txt",
         "results/simulation_3_stats.txt",
+    );
+}
+
+
+fn simulation_1_4_agents() {
+    simulation(
+        3000, 20, 0.5, 4, 4,
+        "results/simulation_1_4_agents_before.txt",
+        "results/simulation_1_4_agents_after.txt",
+        "results/simulation_1_4_agents_stats.txt",
+    );
+}
+
+fn simulation_2_4_agents() {
+    simulation(
+        3000, 100, 0.5, 4, 4,
+        "results/simulation_2_4_agents_before.txt",
+        "results/simulation_2_4_agents_after.txt",
+        "results/simulation_2_4_agents_stats.txt",
+    );
+}
+
+fn simulation_3_4_agents() {
+    simulation(
+        3000, 200, 0.5, 4, 4,
+        "results/simulation_3_4_agents_before.txt",
+        "results/simulation_3_4_agents_after.txt",
+        "results/simulation_3_4_agents_stats.txt",
+    );
+}
+
+fn simulation_6_4_agents() {
+    simulation(
+        3000, 200, 0.65, 4, 4,
+        "results/simulation_6_4_agents_before.txt",
+        "results/simulation_6_4_agents_after.txt",
+        "results/simulation_6_4_agents_stats.txt",
+    );
+}
+
+fn simulation_7_4_agents() {
+    simulation(
+        3000, 20, 0.35, 4, 4,
+        "results/simulation_7_4_agents_before.txt",
+        "results/simulation_7_4_agents_after.txt",
+        "results/simulation_7_4_agents_stats.txt",
     );
 }
 
